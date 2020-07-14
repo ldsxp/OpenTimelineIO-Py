@@ -7,6 +7,12 @@
 [![codecov](https://codecov.io/gh/PixarAnimationStudios/OpenTimelineIO/branch/master/graph/badge.svg)](https://codecov.io/gh/PixarAnimationStudios/OpenTimelineIO)
 [![docs](https://readthedocs.org/projects/opentimelineio/badge/?version=latest)](https://opentimelineio.readthedocs.io/en/latest/index.html)
 
+
+
+Copy the source code from the last pure python: https://github.com/PixarAnimationStudios/OpenTimelineIO/tree/last_pure_python
+
+
+
 Main web site: http://opentimeline.io/
 
 Documentation: https://opentimelineio.readthedocs.io/
