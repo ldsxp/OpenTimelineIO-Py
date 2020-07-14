@@ -22,7 +22,7 @@ Links
 
 Latest Presentation
 --------------------
-`OpenTimelineIO FMX April 2018 Presentation Slides <_static/OpenTimelineIO_2018_04_26_FMX_Published.key.pdf>`_
+`OpenTimelineIO FMX April 2018 Presentation Slides <https://github.com/PixarAnimationStudios/OpenTimelineIO/blob/last_pure_python/docs/_static/OpenTimelineIO_2018_04_26_FMX_Published.key.pdf>`_
 
 Quick Start
 ------------
