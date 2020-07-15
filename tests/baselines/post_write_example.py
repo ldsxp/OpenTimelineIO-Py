@@ -21,21 +21,17 @@
 # KIND, either express or implied. See the Apache License for the specific
 # language governing permissions and limitations under the Apache License.
 #
+import os
 
-"""Console scripts for OpenTimelineIO
-
-.. moduleauthor:: Contributors to the OpenTimelineIO project <opentimelineio@pixar.com>
+"""This file is here to support the test_adapter_plugin unittest.
+If you want to learn how to write your own adapter plugin, please read:
+https://opentimelineio.readthedocs.io/en/latest/tutorials/write-an-adapter.html
 """
 
-# flake8: noqa
 
-# in dependency hierarchy
-from . import (
-    otioconvert,
-    otiocat,
-    otiostat,
-    console_utils,
-    autogen_serialized_datamodel,
-    otiopluginfo,
-)
+def hook_function(in_timeline, argument_map=None):
+    filepath = argument_map.get('_filepath')
+    argument_map.update({'filesize': os.path.getsize(filepath)})
+    in_timeline.metadata.update(argument_map)
 
+    return in_timeline

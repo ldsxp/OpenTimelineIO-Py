@@ -160,6 +160,8 @@ class SerializableObject(object):
     def deepcopy(self):
         return self.__deepcopy__({})
 
+    clone = deepcopy
+
 
 def serializable_field(name, required_type=None, doc=None):
     """Create a serializable_field for child classes of SerializableObject.

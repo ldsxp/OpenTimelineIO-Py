@@ -1,5 +1,5 @@
 #
-# Copyright 2017 Pixar Animation Studios
+# Copyright Contributors to the OpenTimelineIO project
 #
 # Licensed under the Apache License, Version 2.0 (the "Apache License")
 # with the following modification; you may not use this file except in
@@ -94,3 +94,7 @@ class TransitionTests(unittest.TestCase, otio_test_utils.OTIOAssertions):
                 repr(trx.metadata),
             )
         )
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,5 +1,5 @@
 #
-# Copyright 2017 Pixar Animation Studios
+# Copyright Contributors to the OpenTimelineIO project
 #
 # Licensed under the Apache License, Version 2.0 (the "Apache License")
 # with the following modification; you may not use this file except in
@@ -41,6 +41,7 @@ from opentimelineio import (
 SAMPLE_DATA_DIR = os.path.join(os.path.dirname(__file__), "sample_data")
 FCP7_XML_EXAMPLE_PATH = os.path.join(SAMPLE_DATA_DIR, "premiere_example.xml")
 SIMPLE_XML_PATH = os.path.join(SAMPLE_DATA_DIR, "sample_just_track.xml")
+EMPTY_ELEMENT_XML_PATH = os.path.join(SAMPLE_DATA_DIR, "empty_name_tags.xml")
 HIERO_XML_PATH = os.path.join(SAMPLE_DATA_DIR, "hiero_xml_export.xml")
 FILTER_XML_EXAMPLE_PATH = os.path.join(
     SAMPLE_DATA_DIR, "premiere_example_filter.xml"
@@ -171,7 +172,13 @@ class TestFcp7XmlUtilities(unittest.TestCase, test_utils.OTIOAssertions):
 
         empty_element = cElementTree.fromstring("<sequence></sequence>")
         empty_name = self.adapter._name_from_element(empty_element)
-        self.assertIsNone(empty_name)
+        self.assertEqual(empty_name, "")
+
+        empty_name_element = cElementTree.fromstring(
+            "<sequence><name></name></sequence>"
+        )
+        empty_name_2 = self.adapter._name_from_element(empty_name_element)
+        self.assertEqual(empty_name_2, "")
 
     def test_rate_for_element_ntsc_conversion_23976(self):
         rate_element = cElementTree.fromstring(
@@ -218,6 +225,18 @@ class TestFcp7XmlUtilities(unittest.TestCase, test_utils.OTIOAssertions):
             <rate>
                 <timebase>30</timebase>
                 <ntsc>FALSE</ntsc>
+            </rate>
+            """
+        )
+        rate = self.adapter._rate_for_element(rate_element)
+
+        self.assertEqual(rate, 30)
+
+    def test_rate_for_element_no_ntsc(self):
+        rate_element = cElementTree.fromstring(
+            """
+            <rate>
+                <timebase>30</timebase>
             </rate>
             """
         )
@@ -510,7 +529,8 @@ class TestFcp7XmlElements(unittest.TestCase, test_utils.OTIOAssertions):
         )
         markers = self.adapter.markers_from_element(sequence_element)
 
-        expected_names = ["My MArker 1", "dsf", None]
+        # Note that "None" --
+        expected_names = ["My MArker 1", "dsf", ""]
         self.assertEqual([m.name for m in markers], expected_names)
 
     def test_stack_from_element(self):
@@ -892,10 +912,11 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
                 }
             },
         )
-        br_map = {}
 
         file_element = self.adapter._build_empty_file(
-            media_ref, media_ref.available_range.start_time, br_map
+            media_ref,
+            media_ref.available_range.start_time,
+            br_map={},
         )
 
         self.assertEqual(file_element.find("./name").text, "test_clip_name")
@@ -1027,7 +1048,7 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
                     opentime.RationalTime(*audio_clip_durations[t][c])
                 )
 
-        timeline_marker_names = ('My MArker 1', 'dsf', None)
+        timeline_marker_names = ('My MArker 1', 'dsf', "")
 
         for n, marker in enumerate(timeline.tracks.markers):
             self.assertEqual(marker.name, timeline_marker_names[n])
@@ -1050,7 +1071,7 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
 
         clip_with_marker = video_tracks[1][4]
         clip_marker = clip_with_marker.markers[0]
-        self.assertEqual(clip_marker.name, None)
+        self.assertEqual(clip_marker.name, "")
         self.assertEqual(
             clip_marker.marked_range.start_time,
             opentime.RationalTime(73, 30.0)
@@ -1244,10 +1265,14 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
         self.assertJsonEqual(new_timeline, timeline)
 
     def test_roundtrip_disk2mem2disk(self):
+        # somefile.xml -> OTIO
         timeline = adapters.read_from_file(FCP7_XML_EXAMPLE_PATH)
         tmp_path = tempfile.mkstemp(suffix=".xml", text=True)[1]
 
+        # somefile.xml -> OTIO -> tempfile.xml
         adapters.write_to_file(timeline, tmp_path)
+
+        # somefile.xml -> OTIO -> tempfile.xml -> OTIO
         result = adapters.read_from_file(tmp_path)
 
         # TODO: OTIO doesn't support linking items for the moment, so the
@@ -1261,9 +1286,12 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
                     except KeyError:
                         pass
 
-                for _, value in list(md_dict.items()):
-                    if isinstance(value, dict):
+                for value in list(md_dict.values()):
+                    try:
+                        value.items()
                         scrub_displayformat(value)
+                    except AttributeError:
+                        pass
 
             for child in timeline.tracks.each_child():
                 scrub_displayformat(child.metadata)
@@ -1272,12 +1300,17 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
                 except AttributeError:
                     pass
 
+        # media reference bug, ensure that these match
+        self.assertJsonEqual(
+            result.tracks[0][1].media_reference,
+            timeline.tracks[0][1].media_reference
+        )
+
         scrub_md_dicts(result)
         scrub_md_dicts(timeline)
 
         self.assertJsonEqual(result, timeline)
-
-        self.assertIsOTIOEquivalentTo(timeline, result)
+        self.assertIsOTIOEquivalentTo(result, timeline)
 
         # But the xml text on disk is not identical because otio has a subset
         # of features to xml and we drop all the nle specific preferences.
@@ -1340,6 +1373,13 @@ class AdaptersFcp7XmlTest(unittest.TestCase, test_utils.OTIOAssertions):
         with open(HIERO_XML_PATH, "r") as original_file:
             with open(tmp_path, "r") as output_file:
                 self.assertNotEqual(original_file.read(), output_file.read())
+
+    def test_xml_with_empty_elements(self):
+        timeline = adapters.read_from_file(EMPTY_ELEMENT_XML_PATH)
+
+        # Spot-check the EDL, this one would throw exception on load before
+        self.assertEqual(len(timeline.video_tracks()), 12)
+        self.assertEqual(len(timeline.video_tracks()[0]), 34)
 
 
 if __name__ == '__main__':

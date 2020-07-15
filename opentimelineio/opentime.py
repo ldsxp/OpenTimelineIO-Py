@@ -444,6 +444,10 @@ class TimeRange(object):
         duration = duration_from_start_end_time(start_time, new_end_time)
         return TimeRange(start_time, duration)
 
+    def duration_extended_by(self, other):
+        """To extend the duration, I did this according to the meaning of the function name"""
+        return TimeRange(self.start_time, self.duration + other)
+
     # @TODO: remove?
     def clamped(
         self,

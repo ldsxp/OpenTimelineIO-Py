@@ -69,14 +69,14 @@ def serialize_json_to_string(root, indent=4):
     ).encode(root)
 
 
-def serialize_json_to_file(root, to_file):
+def serialize_json_to_file(root, to_file, indent=4):
     """
     Serialize a tree of SerializableObject to JSON.
 
     Writes the result to the given file path.
     """
 
-    content = serialize_json_to_string(root)
+    content = serialize_json_to_string(root, indent)
 
     with open(to_file, 'w') as file_contents:
         file_contents.write(content)

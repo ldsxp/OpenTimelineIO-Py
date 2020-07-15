@@ -1,5 +1,5 @@
 #
-# Copyright 2017 Pixar Animation Studios
+# Copyright Contributors to the OpenTimelineIO project
 #
 # Licensed under the Apache License, Version 2.0 (the "Apache License")
 # with the following modification; you may not use this file except in
@@ -100,3 +100,7 @@ class TestFreezeFrame(unittest.TestCase):
         self.assertEqual(ef.name, "Foo")
         self.assertEqual(ef.time_scalar, 0)
         self.assertEqual(ef.metadata, {"foo": "bar"})
+
+
+if __name__ == '__main__':
+    unittest.main()

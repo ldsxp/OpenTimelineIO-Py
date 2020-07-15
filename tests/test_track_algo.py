@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2017 Pixar Animation Studios
+# Copyright Contributors to the OpenTimelineIO project
 #
 # Licensed under the Apache License, Version 2.0 (the "Apache License")
 # with the following modification; you may not use this file except in
@@ -29,7 +29,6 @@ import unittest
 import copy
 
 import opentimelineio as otio
-
 import opentimelineio.test_utils as otio_test_utils
 
 # for debugging
@@ -492,6 +491,9 @@ class TrackTrimmingTests(unittest.TestCase, otio_test_utils.OTIOAssertions):
                 },
                 {
                     "OTIO_SCHEMA": "Transition.1",
+                    "name": null,
+                    "metadata": {},
+                    "transition_type": null,
                     "in_offset": {
                         "OTIO_SCHEMA": "RationalTime.1",
                         "rate": 24,
