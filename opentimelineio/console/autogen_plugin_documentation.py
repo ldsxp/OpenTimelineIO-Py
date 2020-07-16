@@ -359,13 +359,17 @@ def generate_and_write_documentation_plugins(public_only=False, sanitized_paths=
         sanitized_paths
     )
 
-    contrib_manifest_path = manifest_path_list[1]
-    contrib_manifest_path_sanitized = sanitized_paths[1]
-    contrib_manifest_text = _manifest_formatted(
-        plugin_info_map,
-        [contrib_manifest_path],
-        sanitized_paths
-    )
+    if len(manifest_path_list) > 1:
+        contrib_manifest_path = manifest_path_list[1]
+        contrib_manifest_path_sanitized = sanitized_paths[1]
+        contrib_manifest_text = _manifest_formatted(
+            plugin_info_map,
+            [contrib_manifest_path],
+            sanitized_paths
+        )
+    else:
+        contrib_manifest_path_sanitized = ''
+        contrib_manifest_text = ''
 
     local_manifest_text = ""
     if len(plugin_info_map) > 2 and not public_only:
