@@ -24,6 +24,7 @@
 import unittest
 import os
 import tempfile
+import shutil
 
 import opentimelineio as otio
 from tests import baseline_reader, utils
@@ -156,9 +157,11 @@ class TestPluginManifest(unittest.TestCase):
 
     def setUp(self):
         self.man = utils.create_manifest()
+        self.temp_dir = tempfile.mkdtemp(prefix='test_unittest_temp')
 
     def tearDown(self):
         utils.remove_manifest(self.man)
+        shutil.rmtree(self.temp_dir)
 
     def test_plugin_manifest(self):
         self.assertNotEqual(self.man.adapters, [])
@@ -198,14 +201,15 @@ class TestPluginManifest(unittest.TestCase):
 
         # Generate a fake manifest in a temp file, and point at it with
         # the environment variable
-        with tempfile.NamedTemporaryFile(suffix=suffix) as fpath:
+        temp_file = os.path.join(self.temp_dir,f'temp_{suffix}')
+        with open(temp_file, mode='w+b') as fpath:
             otio.adapters.write_to_file(self.man, fpath.name, 'otio_json')
 
             # clear out existing manifest
             otio.plugins.manifest._MANIFEST = None
 
             # set where to find the new manifest
-            os.environ['OTIO_PLUGIN_MANIFEST_PATH'] = fpath.name + ':foo'
+            os.environ['OTIO_PLUGIN_MANIFEST_PATH'] = fpath.name + f'{os.pathsep}foo'
             result = otio.plugins.manifest.load_manifest()
 
             # Rather than try and remove any other setuptools based plugins

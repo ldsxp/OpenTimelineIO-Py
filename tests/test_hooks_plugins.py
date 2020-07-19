@@ -27,6 +27,7 @@ import tempfile
 from copy import deepcopy
 # import pkg_resources
 # import sys
+import shutil
 
 import opentimelineio as otio
 
@@ -96,10 +97,12 @@ class TestPluginHookSystem(unittest.TestCase):
 
         self.orig_manifest = otio.plugins.manifest._MANIFEST
         otio.plugins.manifest._MANIFEST = self.man
+        self.temp_dir = tempfile.mkdtemp(prefix='test_unittest_temp')
 
     def tearDown(self):
         utils.remove_manifest(self.man)
         otio.plugins.manifest._MANIFEST = self.orig_manifest
+        shutil.rmtree(self.temp_dir)
 
     def test_plugin_adapter(self):
         self.assertEqual(self.hsf.name, "example hook")
@@ -138,8 +141,9 @@ class TestPluginHookSystem(unittest.TestCase):
         tl = otio.schema.Timeline()
         tl_copy = deepcopy(tl)
 
-        with tempfile.NamedTemporaryFile(
-                'wb', prefix='post_hook_', suffix='.otio') as f:
+        temp_file = os.path.join(self.temp_dir, 'post_hook.otio')
+
+        with open(temp_file, mode='wb') as f:
             arg_map = dict()
             otio.adapters.write_to_file(
                 tl,
