@@ -1510,7 +1510,9 @@ def _build_file(media_reference, br_map):
 
         # TODO: This is assuming all files have an audio track. Not sure what
         # the implications of that are.
-        if file_media_e.find("audio") is None:
+        image_exts = {'.jpg', '.png', '.psd', }
+        has_image = (os.path.splitext(url_path)[1].lower() not in image_exts)
+        if has_image and file_media_e.find("audio") is None:
             _append_new_sub_element(file_media_e, "audio")
 
     return file_e
