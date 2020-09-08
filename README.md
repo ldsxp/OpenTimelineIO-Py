@@ -10,8 +10,11 @@
 
 
 Copy the source code from the last pure python: https://github.com/PixarAnimationStudios/OpenTimelineIO/tree/last_pure_python
+Why did I create an old version of the warehouse: https://github.com/PixarAnimationStudios/OpenTimelineIO/issues/756
 
+**I did not add new features, and try to keep it available!**
 
+The following is the original document description:
 
 Main web site: http://opentimeline.io/
 

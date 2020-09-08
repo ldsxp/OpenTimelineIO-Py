@@ -109,8 +109,8 @@ def _append_version_info_to_init_scripts(build_lib):
 
     for module in [
             "opentimelineio",
-            "opentimelineio_contrib",
-            "opentimelineview",
+            # "opentimelineio_contrib",
+            # "opentimelineview",
     ]:
         target_file = os.path.join(build_lib, module, "__init__.py")
         source_file = os.path.join(
@@ -149,7 +149,24 @@ def test_otio():
 
 
 # copied from first paragraph of README.md
-LONG_DESCRIPTION = """OpenTimelineIO is an interchange format and API for
+LONG_DESCRIPTION = """
+Copy the source code from the last pure python: https://github.com/PixarAnimationStudios/OpenTimelineIO/tree/last_pure_python
+Why did I create an old version of the warehouse: https://github.com/PixarAnimationStudios/OpenTimelineIO/issues/756
+
+**I did not add new features, and try to keep it available!**
+
+The following is the original document description:
+
+Main web site: http://opentimeline.io/
+
+Documentation: https://opentimelineio.readthedocs.io/
+
+GitHub: https://github.com/PixarAnimationStudios/OpenTimelineIO
+
+Discussion group: https://lists.aswf.io/g/otio-discussion
+
+
+OpenTimelineIO is an interchange format and API for
 editorial cut information. OTIO is not a container format for media, rather it
 contains information about the order and length of cuts and references to
 external media.
@@ -207,19 +224,19 @@ setup(
         'opentimelineio.schemadef',
         'opentimelineio.plugins',
         'opentimelineio.console',
-        'opentimelineio_contrib',
-        'opentimelineio_contrib.adapters',
-        'opentimelineio_contrib.adapters.aaf_adapter',
-        'opentimelineview',
+        # 'opentimelineio_contrib',
+        # 'opentimelineio_contrib.adapters',
+        # 'opentimelineio_contrib.adapters.aaf_adapter',
+        # 'opentimelineview',
     ],
 
     package_data={
         'opentimelineio': [
             'adapters/builtin_adapters.plugin_manifest.json',
         ],
-        'opentimelineio_contrib': [
-            'adapters/contrib_adapters.plugin_manifest.json',
-        ]
+        # 'opentimelineio_contrib': [
+        #     'adapters/contrib_adapters.plugin_manifest.json',
+        # ]
     },
 
     install_requires=[
