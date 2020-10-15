@@ -24,7 +24,7 @@
 
 """Test Harness for the otio.opentime library."""
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 import unittest
 import copy

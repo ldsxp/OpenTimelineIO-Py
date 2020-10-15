@@ -32,7 +32,7 @@ import re
 import os
 import argparse
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 class ShotDetectError(Exception):

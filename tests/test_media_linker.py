@@ -27,7 +27,7 @@ import unittest
 
 from tests import baseline_reader
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 from tests import utils
 
 LINKER_PATH = "media_linker_example"

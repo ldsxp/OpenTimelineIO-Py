@@ -27,7 +27,7 @@ import argparse
 import sys
 import copy
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 __doc__ = """ Python wrapper around OTIO to convert timeline files between \
 formats.

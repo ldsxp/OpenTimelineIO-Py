@@ -27,8 +27,8 @@ import unittest
 import os
 import copy
 
-import opentimelineio as otio
-import opentimelineio.test_utils as otio_test_utils
+import opentimelineio_py as otio
+import opentimelineio_py.test_utils as otio_test_utils
 
 SAMPLE_DATA_DIR = os.path.join(os.path.dirname(__file__), "sample_data")
 TRANSITION_EXAMPLE_PATH = os.path.join(SAMPLE_DATA_DIR, "transition_test.otio")

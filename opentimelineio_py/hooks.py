@@ -62,7 +62,7 @@ The 'hook_scripts' area loads the python modules with the 'hook_function's to
 call in them.  The 'hooks' area defines the hooks (and any associated
 scripts).  You can further query and modify these from python.
 
->>> import opentimelineio as otio
+>>> import opentimelineio_py as otio
 ... hook_list = otio.hooks.scripts_attached_to("some_hook") # -> ['a','b','c']
 ...
 ... # to run the hook scripts:

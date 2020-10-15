@@ -39,7 +39,7 @@ except ImportError:
     # python3
     import io
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 DOCUMENT_HEADER = """# OpenTimelineIO Serialized Data Documentation
@@ -140,7 +140,7 @@ def _parsed_args():
 # things to skip
 SKIP_CLASSES = [otio.core.SerializableObject, otio.core.UnknownSchema]
 SKIP_KEYS = ["OTIO_SCHEMA"]  # not data, just for the backing format
-SKIP_MODULES = ["opentimelineio.schemadef"]  # because these are plugins
+SKIP_MODULES = ["opentimelineio_py.schemadef"]  # because these are plugins
 
 
 def _generate_model_for_module(mod, classes, modules):

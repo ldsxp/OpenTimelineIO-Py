@@ -24,7 +24,7 @@
 import unittest
 import os
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 from tests import baseline_reader
 
 """Unit tests for the schemadef plugin system."""
@@ -32,7 +32,7 @@ from tests import baseline_reader
 
 SCHEMADEF_NAME = "schemadef_example"
 EXAMPLE_ARG = "exampleArg"
-EXCLASS = "<class 'opentimelineio.schemadef.example_schemadef.exampleSchemaDef'>"
+EXCLASS = "<class 'opentimelineio_py.schemadef.example_schemadef.exampleSchemaDef'>"
 TEST_STRING = """
 {
     "OTIO_SCHEMA": "exampleSchemaDef.1",

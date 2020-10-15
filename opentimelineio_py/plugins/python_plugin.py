@@ -147,7 +147,7 @@ class PythonPlugin(core.SerializableObject):
         with file_obj:
             # this will reload the module if it has already been loaded.
             mod = imp.load_module(
-                "opentimelineio.{}.{}".format(namespace, self.name),
+                "opentimelineio_py.{}.{}".format(namespace, self.name),
                 file_obj,
                 pathname,
                 description

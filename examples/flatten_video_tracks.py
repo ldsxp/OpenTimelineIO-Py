@@ -23,7 +23,7 @@
 # language governing permissions and limitations under the Apache License.
 #
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 import sys
 
 inputpath, outputpath = sys.argv[1:]

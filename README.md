@@ -83,7 +83,7 @@ Example Usage
 -------
 
 ```
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 timeline = otio.adapters.read_from_file("foo.aaf")
 for clip in timeline.each_clip():

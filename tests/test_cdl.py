@@ -26,7 +26,7 @@
 import os
 import unittest
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 __doc__ = """Test CDL support in the EDL adapter."""
 

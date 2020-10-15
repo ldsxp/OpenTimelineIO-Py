@@ -30,9 +30,9 @@ import os
 import tempfile
 import unittest
 
-import opentimelineio as otio
-import opentimelineio.test_utils as otio_test_utils
-from opentimelineio.adapters import cmx_3600
+import opentimelineio_py as otio
+import opentimelineio_py.test_utils as otio_test_utils
+from opentimelineio_py.adapters import cmx_3600
 
 SAMPLE_DATA_DIR = os.path.join(os.path.dirname(__file__), "sample_data")
 SCREENING_EXAMPLE_PATH = os.path.join(SAMPLE_DATA_DIR, "screening_example.edl")

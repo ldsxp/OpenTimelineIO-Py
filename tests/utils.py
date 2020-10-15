@@ -30,7 +30,7 @@ import os
 import tempfile
 
 # import local modules
-import opentimelineio as otio
+import opentimelineio_py as otio
 from tests import baseline_reader
 
 

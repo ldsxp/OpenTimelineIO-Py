@@ -41,7 +41,7 @@ except ImportError:
         could_import_mock = False
 
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 from tests import baseline_reader
 
 

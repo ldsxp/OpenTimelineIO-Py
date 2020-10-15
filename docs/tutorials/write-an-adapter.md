@@ -6,7 +6,7 @@ Users of OTIO can read and write files like this:
 
 ```
 #/usr/bin/env python
-import opentimelineio as otio
+import opentimelineio_py as otio
 mytimeline = otio.adapters.read_from_file("something.edl")
 otio.adapters.write_to_file(mytimeline, "something.otio")
 ```

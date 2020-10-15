@@ -1,6 +1,6 @@
 import pkg_resources
 
-from opentimelineio.plugins import manifest
+from opentimelineio_py.plugins import manifest
 
 """
 In the ``setup.py`` the top-level module was provided as the entry point. When

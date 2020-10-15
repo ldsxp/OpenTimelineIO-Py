@@ -31,7 +31,7 @@ import tempfile
 import unittest
 from xml.etree import cElementTree
 
-from opentimelineio import (
+from opentimelineio_py import (
     adapters,
     opentime,
     schema,

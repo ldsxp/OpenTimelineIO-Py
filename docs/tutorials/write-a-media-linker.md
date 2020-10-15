@@ -5,7 +5,7 @@ OpenTimelineIO Media Linkers are plugins that allow OTIO to replace MissingRefer
 The current MediaLinker can be specified as an argument to `otio.adapters.read_from_file` or via an environment variable.  If one is specified, then it will run after the adapter reads the contents of the file before it is returned back.
 
     #/usr/bin/env python
-    import opentimelineio as otio
+    import opentimelineio_py as otio
     mytimeline = otio.adapters.read_from_file("something.edl", media_linker_name="awesome_studios_media_linker")
 
 After the EDL adapter reads something.edl, the media linker "awesome_studios_media_linker" will run and link the media in the file (if it can).

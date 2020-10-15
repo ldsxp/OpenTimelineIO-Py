@@ -26,9 +26,9 @@
 
 import unittest
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
-import opentimelineio.test_utils as otio_test_utils
+import opentimelineio_py.test_utils as otio_test_utils
 
 # add Item to the type registry for the purposes of unit testing
 otio.core.register_type(otio.core.Item)

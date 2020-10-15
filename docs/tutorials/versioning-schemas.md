@@ -13,7 +13,7 @@ Changing a Field
 For example, lets say you have class:
 
 ```python
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 @otio.core.register_type
 class SimpleClass(otio.core.SerializeableObject):

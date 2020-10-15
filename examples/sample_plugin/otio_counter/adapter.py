@@ -1,4 +1,4 @@
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 """
 This is the implementation of the contrived example adapter that simply writes

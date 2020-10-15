@@ -28,7 +28,7 @@ of the video clips found, including re-timing effects on each one.
 """
 
 import sys
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 def _summarize_effects(item):

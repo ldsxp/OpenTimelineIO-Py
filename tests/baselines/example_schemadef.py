@@ -27,7 +27,7 @@ If you want to learn how to write your own SchemaDef plugin, please read:
 https://opentimelineio.readthedocs.io/en/latest/tutorials/write-a-schemadef.html
 """
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 @otio.core.register_type

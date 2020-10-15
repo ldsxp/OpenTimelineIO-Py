@@ -230,7 +230,7 @@ def load_manifest():
 
     # layer contrib plugins after built in ones
     try:
-        import opentimelineio_contrib as otio_c
+        import opentimelineio_py_contrib as otio_c
 
         contrib_manifest = manifest_from_file(
             os.path.join(
@@ -246,7 +246,7 @@ def load_manifest():
     # Discover setuptools-based plugins
     if pkg_resources:
         for plugin in pkg_resources.iter_entry_points(
-                "opentimelineio.plugins"
+                "opentimelineio_py.plugins"
         ):
             plugin_name = plugin.name
             try:

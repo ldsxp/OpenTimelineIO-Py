@@ -48,7 +48,7 @@ import argparse
 import glob
 import os
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 def parse_args():

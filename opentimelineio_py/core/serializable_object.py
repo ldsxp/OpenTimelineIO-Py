@@ -49,7 +49,7 @@ class SerializableObject(object):
 
     For example
 
-    >>>    import opentimelineio as otio
+    >>>    import opentimelineio_py as otio
 
     >>>    @otio.core.register_type
     ...    class ExampleChild(otio.core.SerializableObject):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sphinx_rtd_theme
-import opentimelineio
+import opentimelineio_py
 
 PACKAGE_TITLE = 'OpenTimelineIO'
 PACKAGE_NAME = 'opentimelineio'

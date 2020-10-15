@@ -27,7 +27,7 @@ If you want to learn how to write your own adapter plugin, please read:
 https://opentimelineio.readthedocs.io/en/latest/tutorials/write-an-adapter.html
 """
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 def read_from_file(filepath, suffix=""):

@@ -37,9 +37,9 @@ except ImportError:
     # python3
     import io
 
-import opentimelineio as otio
-import opentimelineio.test_utils as otio_test_utils
-import opentimelineio.console
+import opentimelineio_py as otio
+import opentimelineio_py.test_utils as otio_test_utils
+import opentimelineio_py.console
 
 SAMPLE_DATA_DIR = os.path.join(os.path.dirname(__file__), "sample_data")
 SCREENING_EXAMPLE_PATH = os.path.join(SAMPLE_DATA_DIR, "screening_example.edl")
@@ -115,7 +115,7 @@ class ConsoleTester(otio_test_utils.OTIOAssertions):
 
 
 class OTIOStatTest(ConsoleTester, unittest.TestCase):
-    test_module = opentimelineio.console.otiostat
+    test_module = opentimelineio_py.console.otiostat
 
     def test_basic(self):
         sys.argv = ['otiostat', SCREENING_EXAMPLE_PATH]
@@ -127,7 +127,7 @@ OTIOStatTest_ShellOut = CreateShelloutTest(OTIOStatTest)
 
 
 class OTIOCatTests(ConsoleTester, unittest.TestCase):
-    test_module = opentimelineio.console.otiocat
+    test_module = opentimelineio_py.console.otiocat
 
     def test_basic(self):
         sys.argv = ['otiocat', SCREENING_EXAMPLE_PATH, "-a", "rate=24.0"]
@@ -170,7 +170,7 @@ OTIOCatTests_OnShell = CreateShelloutTest(OTIOCatTests)
 
 
 class OTIOConvertTests(ConsoleTester, unittest.TestCase):
-    test_module = opentimelineio.console.otioconvert
+    test_module = opentimelineio_py.console.otioconvert
 
     def test_basic(self):
         with tempfile.NamedTemporaryFile() as tf:
@@ -221,7 +221,7 @@ class OTIOConvertTests(ConsoleTester, unittest.TestCase):
                 "--begin", "0,24",
                 "--end", "0,24",
             ]
-            opentimelineio.console.otioconvert.main()
+            opentimelineio_py.console.otioconvert.main()
 
             # check that begin/end "," parsing is checked
             sys.argv = [

@@ -1,0 +1,14 @@
+{
+    "OTIO_SCHEMA" : "PluginManifest.1",
+    "adapters": [
+        {
+            "OTIO_SCHEMA": "Adapter.1",
+            "name": "fcpx_xml",
+            "execution_scope": "in process",
+            "filepath": "fcpx_xml.py",
+            "suffixes": ["fcpxml"]
+        }
+    ],
+    "schemadefs" : [
+    ]
+}

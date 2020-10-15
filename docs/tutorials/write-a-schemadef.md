@@ -14,7 +14,7 @@ and registered in one plugin, or you can use a separate plugin for each of them.
 Here's an example of defining a very simple class called ``MyThing``:
 
 ```
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 @otio.core.register_type
 class MyThing(otio.core.SerializableObject):
@@ -97,7 +97,7 @@ by reading a file that contains the schema or by manually asking the plugin for
 its module object.  For example, if you have a `my_thing` schemadef module:
 
 ```python
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 my_thing = otio.schema.schemadef.module_from_name('my_thing')
 ```
@@ -107,7 +107,7 @@ into a namespace called ``otio.schemadef``, so you can create a class instance
 just like this:
 
 ```
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 mine = otio.schemadef.my_thing.MyThing(arg1, argN)
 ```

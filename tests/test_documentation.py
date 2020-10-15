@@ -27,7 +27,7 @@
 import os
 import unittest
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 SAMPLE_DATA_DIR = os.path.join(os.path.dirname(__file__), "sample_data")

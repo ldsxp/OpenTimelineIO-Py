@@ -25,7 +25,7 @@
 import unittest
 import os
 
-from opentimelineio.console import (
+from opentimelineio_py.console import (
     autogen_serialized_datamodel as asd,
     autogen_plugin_documentation as apd,
 )

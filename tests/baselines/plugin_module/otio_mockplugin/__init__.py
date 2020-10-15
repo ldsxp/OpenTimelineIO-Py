@@ -1,6 +1,6 @@
 import pkg_resources
 
-from opentimelineio.plugins import manifest
+from opentimelineio_py.plugins import manifest
 
 """An example plugin package that generates its package manifest on demand.
 

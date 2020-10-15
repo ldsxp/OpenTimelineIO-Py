@@ -26,7 +26,7 @@ import os
 import tempfile
 import shutil
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 from tests import baseline_reader, utils
 
 """Unit tests for the adapter plugin system."""

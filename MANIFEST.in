@@ -1,7 +1,7 @@
 include README.md CHANGELOG.md LICENSE.txt NOTICE.txt
 recursive-include examples *
-recursive-include opentimelineio *
-recursive-include opentimelineio_contrib *.py
+recursive-include opentimelineio_py *
+recursive-include opentimelineio_py_contrib *.py
 
 recursive-exclude docs *
 prune docs
@@ -12,10 +12,10 @@ exclude .travis.yml
 exclude *.pdf
 exclude CODE_OF_CONDUCT.md
 exclude CONTRIBUTING.md
-exclude opentimelineio_contrib/adapters/Makefile
+exclude opentimelineio_py_contrib/adapters/Makefile
 exclude Makefile
 
-recursive-exclude opentimelineio_contrib/adapters/tests *
+recursive-exclude opentimelineio_py_contrib/adapters/tests *
 recursive-exclude **/__pycache__ *
 global-exclude *.py[co]
 recursive-exclude tests *

@@ -40,7 +40,7 @@ except ImportError:
     # python3
     import io
 
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 ALL_PLUGINS_TEXT = """This documents all the plugins that otio could find."""

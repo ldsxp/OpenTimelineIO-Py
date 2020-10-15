@@ -90,7 +90,7 @@ if (
 
 # Metadata that gets stamped into the __init__ files during the build phase.
 PROJECT_METADATA = {
-    "version": "0.11.0.dev1",
+    "version": "0.11.0.dev2",
     "author": 'Pixar Animation Studios',
     "author_email": 'opentimelineio@pixar.com',
     "license": 'Modified Apache 2.0 License',
@@ -108,8 +108,8 @@ def _append_version_info_to_init_scripts(build_lib):
     """Stamp PROJECT_METADATA into __init__ files."""
 
     for module in [
-            "opentimelineio",
-            # "opentimelineio_contrib",
+            "opentimelineio_py",
+            "opentimelineio_py_contrib",
             # "opentimelineview",
     ]:
         target_file = os.path.join(build_lib, module, "__init__.py")
@@ -181,7 +181,7 @@ Each adapter allows for import/export between that proprietary tool and the
 OpenTimelineIO format."""
 
 setup(
-    name='OpenTimelineIO',
+    name='OpenTimelineIO-Py',
     description='Editorial interchange format and API',
     long_description=LONG_DESCRIPTION,
     url='http://opentimeline.io',
@@ -216,27 +216,27 @@ setup(
     platforms='any',
 
     packages=[
-        'opentimelineio',
-        'opentimelineio.adapters',
-        'opentimelineio.algorithms',
-        'opentimelineio.core',
-        'opentimelineio.schema',
-        'opentimelineio.schemadef',
-        'opentimelineio.plugins',
-        'opentimelineio.console',
-        # 'opentimelineio_contrib',
-        # 'opentimelineio_contrib.adapters',
-        # 'opentimelineio_contrib.adapters.aaf_adapter',
+        'opentimelineio_py',
+        'opentimelineio_py.adapters',
+        'opentimelineio_py.algorithms',
+        'opentimelineio_py.core',
+        'opentimelineio_py.schema',
+        'opentimelineio_py.schemadef',
+        'opentimelineio_py.plugins',
+        'opentimelineio_py.console',
+        'opentimelineio_py_contrib',
+        'opentimelineio_py_contrib.adapters',
+        # 'opentimelineio_py_contrib.adapters.aaf_adapter',
         # 'opentimelineview',
     ],
 
     package_data={
-        'opentimelineio': [
+        'opentimelineio_py': [
             'adapters/builtin_adapters.plugin_manifest.json',
         ],
-        # 'opentimelineio_contrib': [
-        #     'adapters/contrib_adapters.plugin_manifest.json',
-        # ]
+        'opentimelineio_py_contrib': [
+            'adapters/contrib_adapters.plugin_manifest.json',
+        ]
     },
 
     install_requires=[
@@ -244,11 +244,11 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'otioview = opentimelineview.console:main',
-            'otiocat = opentimelineio.console.otiocat:main',
-            'otioconvert = opentimelineio.console.otioconvert:main',
-            'otiostat = opentimelineio.console.otiostat:main',
-            'otioautogen_serialized_schema_docs = opentimelineio.console.autogen_serialized_datamodel:main',
+            # 'otioview = opentimelineview.console:main',
+            'otiocat = opentimelineio_py.console.otiocat:main',
+            'otioconvert = opentimelineio_py.console.otioconvert:main',
+            'otiostat = opentimelineio_py.console.otiostat:main',
+            'otioautogen_serialized_schema_docs = opentimelineio_py.console.autogen_serialized_datamodel:main',
         ],
     },
     extras_require={
@@ -258,9 +258,9 @@ setup(
             'tox>=3.0',
             'urllib3>=1.24.3'
         ],
-        'view': [
-            'PySide2~=5.11'
-        ]
+        # 'view': [
+        #     'PySide2~=5.11'
+        # ]
     },
 
     test_suite='setup.test_otio',

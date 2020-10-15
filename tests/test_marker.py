@@ -24,8 +24,8 @@
 
 import unittest
 
-import opentimelineio as otio
-import opentimelineio.test_utils as otio_test_utils
+import opentimelineio_py as otio
+import opentimelineio_py.test_utils as otio_test_utils
 
 
 class MarkerTest(unittest.TestCase, otio_test_utils.OTIOAssertions):

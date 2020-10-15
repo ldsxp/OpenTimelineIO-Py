@@ -28,7 +28,7 @@
 import argparse
 import fnmatch
 import textwrap
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 
 OTIO_PLUGIN_TYPES = ['all'] + otio.plugins.manifest.OTIO_PLUGIN_TYPES

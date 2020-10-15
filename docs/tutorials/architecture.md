@@ -6,7 +6,7 @@ Overview
 OpenTimelineIO is an open source library for the interchange of editorial information.  This document describes the structure of the python library.
 
 To import the library into python:
-`import opentimelineio as otio`
+`import opentimelineio_py as otio`
 
 Canonical Structure
 --------------------
@@ -40,7 +40,7 @@ The `otio.schema.Clip` objects can reference media through a `otio.media_referen
 Schema composition objects (`otio.schema.Stack` and `otio.schema.Track`) implement the python mutable sequence API.  A simple script that prints out each shot might look like:
 
 ```
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 # read the timeline into memory
 tl = otio.adapters.read_from_file("my_file.otio")
@@ -54,7 +54,7 @@ for each_seq in tl.tracks:
 or, in the case of any nested composition, like this:
 
 ```
-import opentimelineio as otio
+import opentimelineio_py as otio
 
 # read the timeline into memory
 tl = otio.adapters.read_from_file("my_file.otio")

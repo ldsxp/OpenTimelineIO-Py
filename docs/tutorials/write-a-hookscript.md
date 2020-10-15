@@ -61,7 +61,7 @@ This will call the ``some_hook`` hook script and pass in ``some_timeline`` and `
 To query which hook scripts are attached to a given hook, you can call:
 
 ```
-import opentimelineio as otio
+import opentimelineio_py as otio
 hook_list = otio.hooks.scripts_attached_to("some_hook") 
 ```
 
