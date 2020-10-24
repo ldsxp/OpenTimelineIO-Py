@@ -33,6 +33,15 @@ import setuptools.command.build_py
 import distutils.version
 import pip
 
+# Add command to upload to PyPI
+# Set TWINE_USERNAME and TWINE_PASSWORD  variables
+# PyCharm Check: Emulate terminal in output console
+if sys.argv[-1] == 'up':
+    os.system('rmdir /S/Q build')
+    os.system('rmdir /S/Q dist')
+    os.system('python setup.py sdist bdist_wheel')
+    os.system('twine upload dist/*')
+    sys.exit()
 
 # Make sure the environment contains an up to date enough version of pip.
 PIP_VERSION = pip.__version__
@@ -51,18 +60,18 @@ if (
     )
     sys.exit(1)
 
-
 # Make sure the environment contains an up to date enough version of setuptools.
 try:
     import setuptools.version
+
     SETUPTOOLS_VERSION = setuptools.version.__version__
 except ImportError:
     SETUPTOOLS_VERSION = setuptools.__version__
 
 REQUIRED_SETUPTOOLS_VERSION = '20.5.0'
 if (
-    distutils.version.StrictVersion(SETUPTOOLS_VERSION)
-    <= distutils.version.StrictVersion(REQUIRED_SETUPTOOLS_VERSION)
+        distutils.version.StrictVersion(SETUPTOOLS_VERSION)
+        <= distutils.version.StrictVersion(REQUIRED_SETUPTOOLS_VERSION)
 ):
     sys.stderr.write(
         "Your setuptools version is: '{}', OpenTimelineIO requires at least "
@@ -74,11 +83,10 @@ if (
     )
     sys.exit(1)
 
-
 # check the python version first
 if (
-    sys.version_info[0] < 2 or
-    (sys.version_info[0] == 2 and sys.version_info[1] < 7)
+        sys.version_info[0] < 2 or
+        (sys.version_info[0] == 2 and sys.version_info[1] < 7)
 ):
     sys.exit(
         'OpenTimelineIO requires python2.7 or greater, detected version:'
@@ -108,9 +116,9 @@ def _append_version_info_to_init_scripts(build_lib):
     """Stamp PROJECT_METADATA into __init__ files."""
 
     for module in [
-            "opentimelineio_py",
-            "opentimelineio_py_contrib",
-            # "opentimelineview",
+        "opentimelineio_py",
+        "opentimelineio_py_contrib",
+        # "opentimelineview",
     ]:
         target_file = os.path.join(build_lib, module, "__init__.py")
         source_file = os.path.join(
@@ -266,7 +274,7 @@ setup(
     test_suite='setup.test_otio',
 
     tests_require=[
-            'mock;python_version<"3.3"',
+        'mock;python_version<"3.3"',
     ],
 
     # because we need to open() the adapters manifest, we aren't zip-safe
