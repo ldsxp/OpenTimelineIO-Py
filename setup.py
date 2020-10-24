@@ -42,6 +42,11 @@ if sys.argv[-1] == 'up':
     os.system('python setup.py sdist bdist_wheel')
     os.system('twine upload dist/*')
     sys.exit()
+elif sys.argv[-1] == 'sdist':
+    os.system('rmdir /S/Q build')
+    os.system('rmdir /S/Q dist')
+    os.system('python setup.py sdist')
+    sys.exit()
 
 # Make sure the environment contains an up to date enough version of pip.
 PIP_VERSION = pip.__version__
